@@ -1,31 +1,53 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+    <div class="code-container">
+        <div class="header">
+        </div>
+        <splitpanes class="theme">
+            <pane>
+                <MonacoEditor></MonacoEditor>
+            </pane>
+            <pane>
+                <Sandbox></Sandbox>
+            </pane>
+        </splitpanes>
+    </div>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+</template>
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { Splitpanes, Pane } from 'splitpanes'
+import 'splitpanes/dist/splitpanes.css'
+import MonacoEditor from '@/components/MonacoEditor/index.vue'
+import Sandbox from '@/components/sandbox/index.vue'
+// onMounted(() => {
+//     createSandbox({
+//         el: '#sanbox-container',
+//     })
+// })
+</script>
+
+<style scoped lang="scss">
+.code-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        height: 64px;
+        border-bottom: 1px solid #2f3742;
+    }
+
+    .theme {
+        flex: 1;
+        background: #282c34;
+
+        :deep(.splitpanes__splitter) {
+            width: 3px;
+        }
+
+    }
 }
 </style>
